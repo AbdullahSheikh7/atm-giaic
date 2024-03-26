@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 import chalk from "chalk";
 import inquirer from "inquirer";
+import chalkAnimation from "chalk-animation";
+import figlet from "figlet";
+import gradientString from "gradient-string";
 import { createSpinner } from "nanospinner";
 let authenticated = false;
 const sleep = async (ms = 2000) => {
@@ -98,13 +101,22 @@ const atm = async (totalBalance, processingSpinner) => {
     return result;
 };
 const main = async () => {
+    figlet("ATM", (error, data) => {
+        console.log(gradientString.pastel.multiline(data));
+    });
+    await sleep(100);
+    let developer = chalkAnimation.rainbow("Made by Abdullah");
+    await sleep(1000);
+    developer.stop();
+    let github = chalkAnimation.neon("github.com/abdullahsheikh7/\n");
+    await sleep(1000);
+    github.stop();
     let authenticateInputs;
     let authenticationSpinner = createSpinner("Authenticating... Please wait.");
     let processingSpinner = createSpinner("Processing... Please wait.");
     let using = true;
     let atmFunc;
     let totalBalance = Math.floor(Math.random() * 10000);
-    console.log(totalBalance);
     console.log(chalk.bold("Welcome to the ATM.\n"));
     do {
         authenticateInputs = await login();

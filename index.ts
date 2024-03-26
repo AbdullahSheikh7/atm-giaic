@@ -2,6 +2,9 @@
 
 import chalk from "chalk"
 import inquirer from "inquirer";
+import chalkAnimation from "chalk-animation";
+import figlet from "figlet";
+import gradientString from "gradient-string";
 import { Spinner, createSpinner } from "nanospinner";
 
 let authenticated: boolean = false;
@@ -106,6 +109,19 @@ const atm = async (totalBalance: number, processingSpinner: Spinner) => {
 }
 
 const main = async () => {
+  figlet("ATM", (error, data) => {
+    console.log(gradientString.pastel.multiline(data));
+  });
+  await sleep(100);
+
+  let developer = chalkAnimation.rainbow("Made by Abdullah");
+  await sleep(1000);
+  developer.stop();
+
+  let github = chalkAnimation.neon("github.com/abdullahsheikh7/\n");
+  await sleep(1000);
+  github.stop();
+
   let authenticateInputs: { userid: number, userpin: number };
 
   let authenticationSpinner = createSpinner("Authenticating... Please wait.");
